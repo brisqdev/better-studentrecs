@@ -3,7 +3,5 @@ class User < ApplicationRecord
   has_many :sessions, dependent: :destroy
 
   normalizes :email_address, with: ->(e) { e.strip.downcase }
-  has_secure_token :public_token, on: :initialize
-  validates :public_token, uniqueness: true, allow_nil: true
   validates :role, inclusion: { in: %w[system_admin admissions_officer school_counselor teacher applicant] }
 end
