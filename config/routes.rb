@@ -1,12 +1,18 @@
 Rails.application.routes.draw do
-  # Sets the login page as the application landing page at the / index route
-  root "sessions#new"
+  # If a signed session cookie exists, dynamically redirect / to /dashboard
+  constraints ->(request) { request.cookie_jar.signed[:session_id].present? } do
+    root to: redirect("/dashboard"), as: :authenticated_root
+  end
 
-  # Dashboard and Pages Routes
+  # If no session exists, / serves the login view
+  root to: "sessions#new"
+
+  # Distinct Dashboard Route
   get "/dashboard", to: "dashboard#index", as: :dashboard
 
-  # Standard authentication resource routes
-  resource :session
+  # Standard authentication routes (Excluding /session/new)
+  resource :session, except: [ :new ]
   resources :passwords, param: :token
+
   get "up" => "rails/health#show", as: :rails_health_check
 end
