@@ -1,0 +1,2 @@
+class Interviewslot < ApplicationRecord
+end

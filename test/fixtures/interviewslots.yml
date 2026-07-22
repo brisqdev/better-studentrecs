@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  slot_datetime: 2026-07-22 09:27:46
+  slot_academy: MyString
+  slot_capacity: 1
+  slot_assigned: 1
+
+two:
+  slot_datetime: 2026-07-22 09:27:46
+  slot_academy: MyString
+  slot_capacity: 1
+  slot_assigned: 1
