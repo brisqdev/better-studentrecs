@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  applicant: one
+  teacher: one
+  recommendation: MyString
+
+two:
+  applicant: two
+  teacher: two
+  recommendation: MyString
