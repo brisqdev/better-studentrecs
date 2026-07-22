@@ -1,0 +1,6 @@
+<!-- app/views/dashboard/index.html.erb -->
+<h1>Welcome to your Dashboard!</h1>
+<p>You are logged in as: <%= Current.user.email_address %></p>
+
+<!-- To add a functional sign-out button: -->
+<%= button_to "Log Out", session_path, method: :delete %>

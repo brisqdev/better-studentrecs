@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
   def create
     if user = User.authenticate_by(params.permit(:email_address, :password))
       start_new_session_for(user)
-      redirect_to after_authentication_url, notice: "Logged in successfully!"
+      redirect_to dashboard_path, notice: "Logged in successfully!"
     else
       redirect_to root_url, alert: "Invalid credentials. Please try again."
     end
