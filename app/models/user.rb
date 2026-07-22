@@ -3,4 +3,5 @@ class User < ApplicationRecord
   has_many :sessions, dependent: :destroy
 
   normalizes :email_address, with: ->(e) { e.strip.downcase }
+  validates :role, inclusion: { in: %w[system_admin admissions_officer school_counselor teacher applicant] }
 end

@@ -1,6 +1,22 @@
-<!-- app/views/dashboard/index.html.erb -->
 <h1>Welcome to your Dashboard!</h1>
-<p>You are logged in as: <%= Current.user.email_address %></p>
+<p>You are logged in as: <%= Current.user.email_address %></p><br>
 
-<!-- To add a functional sign-out button: -->
+
+<!-- Role Based Layouts -->
+
+<% if Current.user.role == "system_admin" %>
+  <p> System Admin DASHBOARD </p>
+<% elsif Current.user.role == "admissions_officer" %>
+  <p> Admissions Officer DASHBOARD </p>
+<% elsif Current.user.role == "school_counselor" %>
+  <p> School Counselor DASHBOARD </p>
+<% elsif Current.user.role == "teacher" %>
+  <p> Teacher DASHBOARD </p>
+<% else %>
+  <p> Unknown Role. Please contact support. </p>
+<% end %>
+
+
+<!-- Logout Out -->
+<br>
 <%= button_to "Log Out", session_path, method: :delete %>
