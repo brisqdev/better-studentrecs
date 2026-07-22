@@ -14,6 +14,7 @@ class CreateApplicants < ActiveRecord::Migration[8.1]
       t.references :english_teacher, null: false, foreign_key: { to_table: :teachers }
       t.string :academy_of_application
       t.boolean :recommendations_uploaded, default: false, null: false
+      t.boolean :transcript_uploaded, default: false, null: false
       t.string :application_status
 
       t.timestamps
