@@ -1,7 +1,6 @@
 class CreateRecommendations < ActiveRecord::Migration[8.1]
   def change
     create_table :recommendations do |t|
-      t.references :applicant, null: false, foreign_key: true
       t.references :teacher, null: false, foreign_key: true
       t.string :recommendation
 

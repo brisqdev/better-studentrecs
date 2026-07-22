@@ -16,7 +16,7 @@ class CreateApplicants < ActiveRecord::Migration[8.1]
       t.boolean :recommendations_uploaded, default: false, null: false
       t.boolean :transcript_uploaded, default: false, null: false
       t.string :application_status
-      t.references :testing_slot, null: false, foreign_key: { to_table: :testingslots }
+      t.references :test_slot, null: false, foreign_key: { to_table: :testslots }
       t.references :interview_slot, null: false, foreign_key: { to_table: :interviewslots }
       t.references :recommendation, null: false, foreign_key: true
       t.references :transcript, null: false, foreign_key: true
