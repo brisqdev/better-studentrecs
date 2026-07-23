@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for(:title) || "Better Studentrecs" %></title>
+    <title><%= "#{content_for(:title)} - Better Studentrecs"%></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="application-name" content="Better Studentrecs">
@@ -27,5 +27,11 @@
     <main class="container mx-auto mt-28 px-5 flex">
       <%= yield %>
     </main>
+
+    <% if !user.nil? %>
+      <!-- Logout -->
+      <%= button_to "Log Out", session_path, method: :delete %>
+    <% end %>
+
   </body>
 </html>

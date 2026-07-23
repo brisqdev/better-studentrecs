@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  get "applicantdashboard/index"
+  get "teacherdashboard/index"
+  get "counselordashboard/index"
+  get "staffdashboard/index"
+  get "admindashboard/index"
   # If a signed session cookie exists, dynamically redirect / to /dashboard
   constraints ->(request) { request.cookie_jar.signed[:session_id].present? } do
     root to: redirect("/dashboard"), as: :authenticated_root
