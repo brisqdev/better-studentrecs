@@ -22,8 +22,8 @@ class DashboardController < ApplicationController
       # Teacher Dashboard Route
       redirect_to teacherdashboard_path
     when "applicant"
-      # Applicants Dashboard Route
-      redirect_to applicantdashboard_path
+      # Applicants Dashboard Page
+      render :index
     else
       # Invalid Role Management
       render :invalid_role
