@@ -1,7 +1,11 @@
 class ApplicationController < ActionController::Base
   include Authentication
 
-  user = User.find_by(id: session[:user_id])
+  helper_method :user
+
+  def user
+    Current.user
+  end
 
   allow_browser versions: :modern
   stale_when_importmap_changes

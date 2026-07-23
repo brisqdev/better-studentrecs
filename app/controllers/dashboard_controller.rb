@@ -1,6 +1,6 @@
 class DashboardController < ApplicationController
   def index
-    user = User.find_by(id: session[:user_id])
+    user = Current.user
 
     if user.nil?
       redirect_to root_url, alert: "Please log in first."

@@ -23,15 +23,63 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <main class="container mx-auto mt-28 px-5 flex">
-      <%= yield %>
+  <body class="min-h-screen flex flex-col">
+    <!-- Top Navigation Bar -->
+    <nav class="w-full bg-white border-b border-gray-200 shadow-sm shrink-0">
+      <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <!-- Left Side: Logo & Navigation Links -->
+        <div class="flex items-center space-x-8">
+          <!-- Logo badge styled like admissions badge but using app name -->
+          <a href="<%= root_path %>" class="flex items-center space-x-2">
+            <div class="bg-neutral-900 text-amber-400 font-bold px-3 py-1.5 rounded border border-neutral-700 tracking-wider text-xs uppercase flex items-center space-x-1.5">
+              <span>Better Studentrecs</span>
+            </div>
+          </a>
+          
+          <!-- Links -->
+          <div class="flex items-center space-x-6 text-sm font-medium text-gray-600">
+            <a href="<%= root_path %>" class="hover:text-gray-900 transition-colors">Home</a>
+            <a href="<%= faqs_path %>" class="hover:text-gray-900 transition-colors">Help</a>
+          </div>
+        </div>
+
+        <!-- Right Side: Sign out -->
+        <div class="flex items-center">
+          <% if authenticated? %>
+            <%= button_to session_path, method: :delete, class: "text-sm font-medium text-gray-600 hover:text-red-600 cursor-pointer bg-transparent border-0 focus:outline-none" do %>
+              Sign out
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow flex flex-col items-center justify-start pt-12 pb-24 px-4">
+      <!-- Warning Banner (rendered if warning is defined on the page) -->
+      <% if content_for?(:warning) %>
+        <div id="warning-banner" class="w-full max-w-3xl mb-4 bg-[#fef9c3] border border-[#facc15] text-[#854d0e] rounded-lg px-4 py-3 flex items-start justify-between shadow-sm relative">
+          <div class="flex items-start space-x-2.5 pr-8">
+            <svg class="w-5 h-5 text-[#eab308] shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+            </svg>
+            <div class="text-sm">
+              <span class="font-bold text-[#854d0e]">Warning!</span>
+              <%= yield :warning %>
+            </div>
+          </div>
+          <button type="button" onclick="this.closest('#warning-banner').remove()" class="text-[#854d0e] hover:text-black focus:outline-none cursor-pointer p-0.5 ml-3 absolute right-3 top-3">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          </button>
+        </div>
+      <% end %>
+
+      <!-- White content box -->
+      <div class="w-full max-w-3xl bg-white rounded-lg shadow-lg border border-gray-100 p-8 min-h-[300px]">
+        <%= yield %>
+      </div>
     </main>
-
-    <% if !user.nil? %>
-      <!-- Logout -->
-      <%= button_to "Log Out", session_path, method: :delete %>
-    <% end %>
-
   </body>
 </html>
