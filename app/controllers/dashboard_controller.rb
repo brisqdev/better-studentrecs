@@ -11,19 +11,19 @@ class DashboardController < ApplicationController
     case user.role
     when "system_admin"
       # System Admin Dashboard Route
-      AdmindashboardController.action(:index).call(request.env)
+      redirect_to admindashboard_path
     when "admissions_officer"
       # Admissions Officer Dashboard Route
-      StaffdashboardController.action(:index).call(request.env)
+      redirect_to staffdashboard_path
     when "school_counselor"
       # School Counselor Dashboard Route
-      CounselordashboardController.action(:index).call(request.env)
+      redirect_to counselordashboard_path
     when "teacher"
       # Teacher Dashboard Route
-      TeacherdashboardController.action(:index).call(request.env)
+      redirect_to teacherdashboard_path
     when "applicant"
       # Applicants Dashboard Route
-      ApplicantdashboardController.action(:index).call(request.env)
+      redirect_to applicantdashboard_path
     else
       # Invalid Role Management
       render :invalid_role

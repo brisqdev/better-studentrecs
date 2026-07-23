@@ -15,8 +15,13 @@ Rails.application.routes.draw do
   # If no session exists, / serves the login view
   root to: "sessions#new"
 
-  # Distinct Dashboard Route
+  # Distinct Dashboard Routes
   get "/dashboard", to: "dashboard#index", as: :dashboard
+  get "/admindashboard", to: "admindashboard#index", as: :admindashboard
+  get "/staffdashboard", to: "staffdashboard#index", as: :staffdashboard
+  get "/counselordashboard", to: "counselordashboard#index", as: :counselordashboard
+  get "/teacherdashboard", to: "teacherdashboard#index", as: :teacherdashboard
+  get "/applicantdashboard", to: "applicantdashboard#index", as: :applicantdashboard
 
   # Standard authentication routes (Excluding /session/new)
   resource :session, except: [ :new ]
