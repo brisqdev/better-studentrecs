@@ -1,6 +1,25 @@
 <% content_for :title, "Admin Dashboard" %>
 
 <div>
-  <h1 class="font-bold text-4xl">Admindashboard#index</h1>
-  <p>Find me in app/views/admindashboard/index.html.erb</p>
+  <h2 class="font-bold text-2xl">Admissions Officers</h2>
+  <table>
+    <tr>
+      <th scope="col">Officer Email</th>
+      <th scope="col">Actions</th>
+    </tr>
+    <% @admissionsStaff.each do |user| %>
+      <tr>
+        <% userEmail = user.read_attribute(:email_address) %>
+
+        <td><%= userEmail %></td>
+        <td>
+          <%= button_to "Delete User", delete_staff_path(user), 
+              method: :delete, 
+              class: "text-red-600 hover:text-red-800 font-medium whitespace-nowrap bg-transparent border-none p-0 cursor-pointer", 
+              form: { data: { turbo_confirm: "Are you sure you want to delete Admission Staff with email #{userEmail}?", turbo_method: :delete } } %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+  <%= button_to "Create New User", create_staff_path("test_staff2@example.com", "password123"), method: :post, data: { turbo_confirm: "Are you sure you want to create Admission Staff with email #{"test_staff2@example.com"}"}%>
 </div>
